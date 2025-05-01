@@ -22,7 +22,9 @@ Designed for developers, businesses, and web apps that need a reliable and persi
 ## 📚 How to Use
 
 1. **Install the Extension**  
-   Load it from the Chrome Web Store (or load unpacked in Developer Mode).
+✅ Now available on the **Chrome Web Store**!  
+👉 [Install MyDevice-ID Extension](https://chromewebstore.google.com/detail/my-device-id/kjlihhpfblhhplemjpemgmbcanaipeij?hl=en)
+Or load it manually through **Chrome Extensions → Developer Mode → Load unpacked**.
 
 2. **Request the Device ID and Device Name in Your Web Application**  
 
