@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "My Device ID",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Generate and store a unique device ID",
   "permissions": ["storage"],
   "background": {
@@ -15,9 +15,16 @@
     }
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
   },
   "icons": {
-    "48": "icon.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   }
 }

@@ -1,107 +1,44 @@
-# 🌟 MyDevice-ID Extension
+# My Device ID
 
-> **Secure Your Identity, One Device at a Time.**
+A lightweight Chrome extension that generates and stores a unique, persistent device identifier — giving web apps a reliable way to recognize a device, entirely on the client.
 
-**MyDevice-ID** is a cutting-edge Chrome extension that silently generates, stores, and manages a unique device identifier for your browser.  
-Designed for developers, businesses, and web apps that need a reliable and persistent way to recognize devices — without sacrificing user privacy or performance.
+[**Install from the Chrome Web Store →**](https://chromewebstore.google.com/detail/my-device-id/kjlihhpfblhhplemjpemgmbcanaipeij?hl=en)
 
-**Install it. Connect it. Identify securely.**
+## Features
 
----
+- Generates a unique device ID (UUID) on first install.
+- Stores the ID and an optional device name in Chrome local storage.
+- Exposes both to your web app via `window.postMessage`.
+- Popup to view, copy, rename, and regenerate the ID.
 
-## 🚀 Features
+## Usage
 
-- 🔒 Securely generates a unique device ID on first install.
-- 💾 Stores the device ID and device name in Chrome local storage.
-- 🔄 Easy communication with websites through `window.postMessage`.
-- 🖥️ Popup screen to view or set a custom device name.
-- ⚡ Works automatically with no user interaction needed.
-
----
-
-## 📚 How to Use
-
-1. **Install the Extension**  
-✅ Now available on the **Chrome Web Store**!  
-👉 [Install MyDevice-ID Extension](https://chromewebstore.google.com/detail/my-device-id/kjlihhpfblhhplemjpemgmbcanaipeij?hl=en)
-Or load it manually through **Chrome Extensions → Developer Mode → Load unpacked**.
-
-2. **Request the Device ID and Device Name in Your Web Application**  
+Request the device info from your web app and listen for the response:
 
 ```javascript
-// Request device ID and device name
+// Request
 window.postMessage({ type: "GET_MY_DEVICE_ID" }, "*");
 
-// Listen for response
+// Listen
 window.addEventListener("message", (event) => {
   if (event.source !== window) return;
-  if (event.data.type === "MY_DEVICE_ID_RESPONSE") {
-    const deviceId = event.data.my_device_id;
-    const deviceName = event.data.my_device_name;
+  if (event.data.type !== "MY_DEVICE_ID_RESPONSE") return;
 
-    console.log("✅ Device ID:", deviceId);
-    console.log("✅ Device Name:", deviceName);
-
-    // Example: Send deviceId and deviceName to your backend
-    // apiService.registerDevice(deviceId, deviceName);
-  }
+  const { my_device_id, my_device_name } = event.data;
+  // e.g. apiService.registerDevice(my_device_id, my_device_name);
 });
 ```
 
-✅ This allows your app to securely fetch and use both the **Device ID** and the optional **Device Name**.
+## Installation (manual)
 
----
+1. Clone or download this repository.
+2. Open **Chrome → Extensions** and enable **Developer Mode**.
+3. Click **Load unpacked** and select the project folder.
 
-## 🛠 How It Works
+## Permissions
 
-- On first installation, the extension generates a random `UUID` for the device.
-- It stores the device ID and optionally a device name in Chrome's local storage.
-- Your webpage sends a `window.postMessage` requesting the device info.
-- The extension responds back with the stored device ID and device name.
+- `storage` — stores the device ID and name locally. No data is collected or transmitted. See [Privacy Policy](privacy-policy.md).
 
----
+## License
 
-## 📷 Popup Features
-
-- View your unique Device ID.
-- Set and save a custom Device Name.
-- User-friendly popup interface.
-
----
-
-## 🛡️ Permissions
-
-- **`storage`** — Used to securely store and retrieve the Device ID and Device Name.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — feel free to use, modify, and contribute!
-
----
-
-## 📥 Installation
-
-> *(Coming soon on the Chrome Web Store! 🚀)*  
-> You can also load it manually through **Chrome Extensions → Developer Mode → Load unpacked**.
-
----
-
-## 🌟 Quick Summary
-
-| Feature                 | Status   |
-| ------------------------ | -------- |
-| Unique Device ID         | ✅ |
-| Chrome Local Storage     | ✅ |
-| Page Communication API   | ✅ |
-| Popup for Custom Naming  | ✅ |
-| Lightweight and Secure   | ✅ |
-
----
-
-## 📩 Contact
-
-For questions, suggestions, or collaboration, feel free to open an issue or submit a pull request!
-
----
+MIT © [Eng Acs](https://github.com/engacs) — [Repository](https://github.com/engacs/MyDevice-ID)
